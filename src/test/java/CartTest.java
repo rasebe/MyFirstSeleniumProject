@@ -17,7 +17,7 @@ public class CartTest {
     }
 
     @Test
-    public void addToCart() {
+    public void addToCartTest() {
         driver.get("http://testfasttrackit.info/selenium-test/");
         WebElement saleLink = driver.findElement(By.cssSelector("#nav > ol > li.level0.nav-5.parent > a"));
         saleLink.click();
@@ -35,7 +35,7 @@ public class CartTest {
     }
 
         @Test
-    public void emptyCart() {
+    public void emptyCartTest() {
         driver.get("http://testfasttrackit.info/selenium-test/");
         WebElement vipLink = driver.findElement(By.cssSelector("#nav > ol > li.level0.nav-6.last > a"));
         vipLink.click();
@@ -54,7 +54,7 @@ public class CartTest {
     }
 
     @Test
-    public void continueShoppingFromCart() {
+    public void continueShoppingFromCartTest() {
         driver.get("http://testfasttrackit.info/selenium-test/");
         WebElement saleLink = driver.findElement(By.cssSelector("#nav > ol > li.level0.nav-5.parent > a"));
         saleLink.click();
@@ -69,7 +69,7 @@ public class CartTest {
     }
 
     @Test
-    public void editFromCart() {
+    public void editFromCartTest() {
         driver.get("http://testfasttrackit.info/selenium-test/");
         WebElement saleLink = driver.findElement(By.cssSelector("#nav > ol > li.level0.nav-5.parent > a"));
         saleLink.click();
@@ -83,7 +83,7 @@ public class CartTest {
         driver.findElement(By.cssSelector("#shopping-cart-table > tbody > tr > td.product-cart-actions > ul > li > a")).click();
     }
     @Test
-    public void viewShoppingCart() {
+    public void viewShoppingCartTest() {
         driver.get("http://testfasttrackit.info/selenium-test/");
         WebElement saleLink = driver.findElement(By.cssSelector("#nav > ol > li.level0.nav-5.parent > a"));
         saleLink.click();
@@ -99,7 +99,7 @@ public class CartTest {
         driver.findElement(By.cssSelector("#header-cart > div.minicart-wrapper > div.minicart-actions > a")).click();
     }
     @Test
-    public void invalidDiscountCode() {
+    public void invalidDiscountCodeTest() {
         driver.get("http://testfasttrackit.info/selenium-test/");
         WebElement saleLink = driver.findElement(By.cssSelector("#nav > ol > li.level0.nav-5.parent > a"));
         saleLink.click();
@@ -112,5 +112,19 @@ public class CartTest {
         driver.findElement(By.cssSelector("#discount-coupon-form > div > div > div > div > button > span > span")).click();
         WebElement invalidCouponCodeElement = driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col1-layout > div > div > div.cart.display-single-price > ul > li > ul > li > span"));
         Assert.assertEquals(invalidCouponCodeElement.getText(), "Coupon code \"sadhasd\" is not valid.");
+    }
+    @Test
+    public void removeItemFromcartTest() {
+        driver.get("http://testfasttrackit.info/selenium-test/");
+        WebElement saleLink = driver.findElement(By.cssSelector(".level0[href*='sale.html']"));
+        saleLink.click();
+        WebElement viewItemLink = driver.findElement(By.cssSelector(".button[href*='racer']"));
+        viewItemLink.click();
+        driver.findElement(By.cssSelector("img[alt='Purple']")).click();
+        driver.findElement(By.cssSelector("#swatch80 span:first-child")).click();
+        driver.findElement(By.cssSelector(".add-to-cart-buttons span>span")).click();
+        driver.findElement(By.cssSelector(".a-center.product-cart-remove a")).click();
+        WebElement welcomeMessageElement = driver.findElement(By.cssSelector("div h1"));
+        Assert.assertEquals(welcomeMessageElement.getText(), "SHOPPING CART IS EMPTY");
     }
 }

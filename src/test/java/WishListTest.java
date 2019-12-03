@@ -32,4 +32,23 @@ public class WishListTest {
     public void closeDriver(){
         driver.quit();
     }
+
+    @Test
+    public void shareWishlistTest(){
+        driver.get("http://testfasttrackit.info/selenium-test/");
+        WebElement accountLink = driver.findElement(By.cssSelector(".skip-link.skip-account span+span"));
+        accountLink.click();
+        WebElement loginLink = driver.findElement(By.cssSelector("a[title='Log In']"));
+        loginLink.click();
+        driver.findElement(By.cssSelector("#email")).sendKeys("ralucasebeni@gmail.com");
+        driver.findElement(By.cssSelector("#pass")).sendKeys("123456");
+        driver.findElement(By.cssSelector("#send2 > span > span")).click();
+        driver.findElement(By.cssSelector(".level0[href='http://testfasttrackit.info/selenium-test/sale.html']")).click();
+        driver.findElement(By.cssSelector(".link-wishlist[href*='423']")).click();
+        driver.findElement(By.cssSelector("button[title='Share Wishlist'] span>span")).click();
+        driver.findElement(By.cssSelector("#email_address")).sendKeys("stekoioana@huh.com");
+        driver.findElement(By.cssSelector("button[title='Share Wishlist'] span>span")).click();
+        WebElement welcomeMessageElement = driver.findElement(By.cssSelector("li>span"));
+        Assert.assertEquals(welcomeMessageElement.getText(), "Your Wishlist has been shared.");
+    }
 }
